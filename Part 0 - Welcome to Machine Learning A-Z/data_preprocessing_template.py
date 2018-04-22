@@ -40,3 +40,13 @@ X = onehotencoder.fit_transform(X).toarray()
 
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y) # 0 to no and y to yes
+
+# Splitting the data in training set and test set
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# Feature Scaling as vast difference between Age and salary as Euclidian distance is much larger
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test) # no fitting as already fitted in the training set
